@@ -1,2 +1,12 @@
 <h1>Lists#show</h1>
-<p>Find me in app/views/lists/show.html.erb</p>
+<h3>User: <%= @user.first_name %> </h3>
+<h3><%= @list.title %> </h3>
+<% if @items.any? %>
+	<%  @items.each do |item| %>
+	<p> <%= link_to item.title, item_path(item) %> </p>
+	<p> <%= item.description  if item.description%> </p>
+	<% end %>
+<% else %>
+<p>no items</p>
+<% end %>
+	

@@ -1,2 +1,7 @@
 <h1>Items#show</h1>
-<p>Find me in app/views/items/show.html.erb</p>
+<div class = 'items'>
+<%  @item.each do |item| %>
+	<p> <%= link_to item.title, item_path(item) %> </p>
+	<p> <%= item.description  if item.description%> </p>
+<% end %>
+<div>

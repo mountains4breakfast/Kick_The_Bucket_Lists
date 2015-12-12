@@ -7,8 +7,20 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+  
+ <%= link_to 'LOGO HERE', root_path %>
+<% if user_signed_in?%>
+	<h1> welcome<%= current_user.name%></h1>
+	<%= link_to 'logout', destroy_user_session_path, method: :delete %>
+  <%= link_to 'edit', edit_user_registration_path %>
+  <%= link_to 'new idea', new_idea_path %>
+<% else %>
+  <%= link_to 'login', new_user_session_path %>
+  <%= link_to 'sign up', new_user_registration_path%>
+<% end %>
+<hr/>
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
 
 <%= yield %>
 

@@ -1,5 +1,5 @@
 class ListsController < ApplicationController
-before action :find_list, only[:show, :edit, :update]
+before_action :find_list, only: [:show, :edit, :update]
 
   def index
     @lists = List.all
@@ -15,8 +15,11 @@ before action :find_list, only[:show, :edit, :update]
   end
 
   def create
+    @user = User.find(current_user)
     @list = List.new(list_params)
-    if @list.save
+    @list.user_id = current_user.id
+    binding.pry
+    if @list.save(list_params)
       redirect_to list_path(@list)
     else
       render :new

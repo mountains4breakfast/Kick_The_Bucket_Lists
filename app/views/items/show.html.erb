@@ -3,6 +3,8 @@
 
 	<p> <%= @item.title %> </p>
 	<p> <%= @item.description  if @item.description%> </p>
+	<p> <%= raw @item.tag_list.map {|i| link_to i, tag_path(i)}.join(" |") %></p>
+	
 
 <div>
 <%= link_to 'back to index', root_path%>

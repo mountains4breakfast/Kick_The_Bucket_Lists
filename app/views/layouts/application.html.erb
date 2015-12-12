@@ -10,7 +10,7 @@
   
 <%= link_to 'LOGO HERE', root_path %>
 <% if user_signed_in?%>
-	<h1> welcome<%= current_user.first_name%></h1>
+	<h6> welcome <%= current_user.first_name%></h6>
 	<%= link_to 'logout', destroy_user_session_path, method: :delete %>
   <%= link_to 'edit', edit_user_registration_path %>
   <% if !current_user.lists.any? %>

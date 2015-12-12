@@ -1,9 +1,13 @@
 class ItemsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
-  before_action :find_item, except: [:index, :new, :create]
+  before_action :find_item, except: [:index, :new,:create]
   
   def index
-    @items = Item.all
+    if params[:tag]
+      @items = Item.tagged_with(params[:tag])
+    else
+      @items = Item.all
+    end
   end
 
   def show
@@ -14,7 +18,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @list = current_user.list
+    @list = current_user.lists.first
     @item = Item.new(item_params)
     if @item.save
       ListsItem.create(item_id: @item.id, list_id: @list.id)
@@ -37,7 +41,7 @@ end
   private
 
   def item_params
-    params.require(:item).permit(:title, :description, :completed)
+    params.require(:item).permit(:title, :description, :completed,:tag_list)
   end
 
   def find_item

@@ -13,7 +13,11 @@
 	<h1> welcome<%= current_user.first_name%></h1>
 	<%= link_to 'logout', destroy_user_session_path, method: :delete %>
   <%= link_to 'edit', edit_user_registration_path %>
+  <% if !current_user.lists.any? %>
     <%= link_to 'create list', new_list_path %>
+  <% else %>
+    <%= link_to 'go to list', list_path(current_user.lists.first) %>
+    <% end %>
   
 <% else %>
   <%= link_to 'login', new_user_session_path %>

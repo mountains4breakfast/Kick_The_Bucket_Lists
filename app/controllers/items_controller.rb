@@ -1,8 +1,7 @@
 class ItemsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
-  before_action :find_item, except: [:index, :new]
-  before_action :new_item, only: [:new, :create]
-
+  before_action :find_item, except: [:index, :new, :create]
+  
   def index
     @items = Item.all
   end
@@ -11,11 +10,13 @@ class ItemsController < ApplicationController
   end
 
   def new
+    @item = Item.new
   end
 
   def create
     @list = current_user.list
-    if @item.save(item_params)
+    @item = Item.new(item_params)
+    if @item.save
       ListsItem.create(item_id: @item.id, list_id: @list.id)
       redirect_to list_path(@list)
     else

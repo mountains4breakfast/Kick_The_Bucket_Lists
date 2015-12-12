@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_one :list, dependent: :destroy
+  has_many :lists, dependent: :destroy
   validates_presence_of :first_name
 
   # Include default devise modules. Others available are:

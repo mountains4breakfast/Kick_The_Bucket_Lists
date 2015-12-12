@@ -1,7 +1,8 @@
 <h1>Items#show</h1>
 <div class = 'items'>
-<%  @item.each do |item| %>
-	<p> <%= link_to item.title, item_path(item) %> </p>
-	<p> <%= item.description  if item.description%> </p>
-<% end %>
+
+	<p> <%= @item.title %> </p>
+	<p> <%= @item.description  if @item.description%> </p>
+
 <div>
+<%= link_to 'back to index', root_path%>

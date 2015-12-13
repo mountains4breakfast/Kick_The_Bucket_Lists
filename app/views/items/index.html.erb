@@ -1,4 +1,5 @@
 <h1>Items#index</h1>
+<h1>Welcome to Kick the Bucket List</h1>
 <% tag_cloud Item.tag_counts, %w[s,m,l] do |tag, css_class| %>
 	<%= link_to tag, tag_path(tag.name), class: css_class %>
 <% end %>
@@ -6,6 +7,6 @@
 <div class = 'items'>
 <%  @items.each do |item| %>
 	<p> <%= link_to item.title, item_path(item) %> </p>
-	<p> <%= raw item.tag_list.map {|i| link_to i, tag_path(i)}.join(" |") %></p>
+	<p class="tag"> <%= raw item.tag_list.map {|i| link_to i, tag_path(i)}.join(" | ") %></p>
 <% end %>
 <div>

@@ -4,9 +4,12 @@
 	<%= link_to tag, tag_path(tag.name), class: css_class %>
 <% end %>
 <hr/>
-<div class = 'items'>
+<div class = 'items row container'>
 <%  @items.each do |item| %>
-	<p> <%= link_to item.title, item_path(item) %> </p>
-	<p class="tag"> <%= raw item.tag_list.map {|i| link_to i, tag_path(i)}.join(" | ") %></p>
+  <div class="col card small s12 m4 l3 hoverable">
+	  <p> <%= link_to item.title, item_path(item) %> </p>
+    <p> <%= item.description %> </p>
+	  <p class="tag"> <%= raw item.tag_list.map {|i| link_to i, tag_path(i)}.join(" | ") %></p>
+  </div>
 <% end %>
 <div>

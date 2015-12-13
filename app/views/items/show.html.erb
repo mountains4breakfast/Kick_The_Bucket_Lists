@@ -4,7 +4,7 @@
 	<p> <%= @item.title %> </p>
 	<p> <%= @item.description  if @item.description%> </p>
 	<p> <%= raw @item.tag_list.map {|i| link_to i, tag_path(i)}.join(" |") %></p>
-	
+	<%= link_to 'Add Item to Your List', new_copy_path(@item.id), method: :post %> 
 
 <div>
 <%= link_to 'back to index', root_path%>

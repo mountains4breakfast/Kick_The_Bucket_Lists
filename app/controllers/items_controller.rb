@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
   before_action :find_item, except: [:index, :new,:create]
-  
+
   def index
     if params[:tag]
       @items = Item.tagged_with(params[:tag])
@@ -20,13 +20,19 @@ class ItemsController < ApplicationController
   def create
     @list = current_user.lists.first
     @item = Item.new(item_params)
+    #TODO Not the best way to do this so fix this when you are smarter.
     if @item.save
-      ListsItem.create(item_id: @item.id, list_id: @list.id)
-      redirect_to list_path(@list)
+      if ListsItem.create(item_id: @item.id, list_id: @list.id, completed: false)
+        redirect_to list_path(@list)
+      else
+        render :new
+      end
     else
       render :new
     end
   end
+
+
 
   def edit
   end

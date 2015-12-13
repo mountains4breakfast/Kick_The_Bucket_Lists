@@ -1,2 +1,4 @@
 <%= @list.title %>
 <%= @item.title %>
+<p>Completed: <%= @lists_item.completed %></p>
+<%= link_to 'Adjust status', complete_path(@lists_item), method: :put %>

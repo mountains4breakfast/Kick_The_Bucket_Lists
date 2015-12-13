@@ -37,6 +37,18 @@ def update
   else
     render :new
   end
+
+  def destroy
+    @list = List.find(params[:list_id])
+    @item = Item.find(params[:item_id])
+    @join = ListsItem.where({list_id: @list.id, item_id: @item.id})
+    if @join.destroy
+      redirect_to list_path(@list.id)
+    else
+      render :new
+    end
+  end
+
 end
   private
 

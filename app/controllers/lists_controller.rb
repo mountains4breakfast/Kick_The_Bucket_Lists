@@ -8,6 +8,13 @@ before_action :find_list, only: [:show, :edit, :update]
   def show
     @items = @list.items
     @user = User.find(@list.user_id)
+    @tags_and_counts = @list.tags_and_counts
+    #binding.pry
+    if params[:tag]
+      @items = @items.tagged_with(params[:tag])
+    else
+      @items 
+    end
   end
 
   def new

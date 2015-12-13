@@ -1,17 +1,20 @@
 <div class="center-align">
 <h1><%= @list.title %> </h1>
+<p><%=  raw @tags_and_counts.map {|i| link_to "#{i.name}", list_tag_path(@list,i.name), class: "tag data-tag-count-#{i.count}"}.join("") %></p>
 <h3>User: <%= @user.first_name %> </h3>
 </div>
 <div class="row">
 <% if @items.any? %>
 	<%  @items.each do |item| %>
+
   <div>
     <div class="col card small s10 offset-s1 m4 hoverable teal lighten-3">
     	<p> <%= link_to item.title, join_path(@list.id, item.id) %> </p>
     	<p> <%= item.description  if item.description%> </p>
-    	<p> <%= raw item.tag_list.map {|i| link_to i, tag_path(i)}.join(" | ") %></p>
+      <p> <%= raw item.tag_list.map {|i| link_to i, list_tag_path(@list,i), class: "tag"}.join("")  %></p>
     </div>
   </div>
+
 	<% end %>
 <% else %>
 <p>No Items</p>

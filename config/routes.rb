@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get '/lists/:list_id/items/:item_id', to:'lists_items#show', as: 'join'
   post '/listsitems/:item_id', to: 'lists_items#copy', as: 'new_copy'
   put '/listsitems/:id', to: 'lists_items#update', as: 'complete'
+
+  get '/list/:id/:tag', to:'lists#show', as: 'list_tag'
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

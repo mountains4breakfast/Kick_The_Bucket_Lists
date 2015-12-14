@@ -1,5 +1,5 @@
 <%= form_for @item do |f| %>
-	
+
 	<%= f.label :title %>
 	<%= f.text_field :title %>
 
@@ -9,7 +9,8 @@
 		<%= f.label :tag_list, "Tags (seperated by commas)" %>
 	<%= f.text_field :tag_list %>
 
-	<%= f.submit %>
+  <div class="btn waves-effect waves-light">
+  	<%= f.submit %>
+  </div>
 
 <% end %>
-

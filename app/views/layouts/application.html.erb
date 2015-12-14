@@ -7,22 +7,23 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  
-<%= link_to 'LOGO HERE', root_path %>
-<% if user_signed_in?%>
-	<h6> welcome <%= current_user.first_name%></h6>
-	<%= link_to 'logout', destroy_user_session_path, method: :delete %>
-  <%= link_to 'edit', edit_user_registration_path %>
+<div class="row">
+<%= link_to 'Home', root_path, class: 'btn col s1' %>
+<% if user_signed_in? %>
+	<h6 class=" col s2"> Welcome <%= current_user.first_name %></h6>
   <% if !current_user.lists.any? %>
-    <%= link_to 'create list', new_list_path %>
+    <%= link_to 'Create List', new_list_path, class: 'btn col s2 offset-s3' %>
   <% else %>
-    <%= link_to 'go to list', list_path(current_user.lists.first) %>
-    <% end %>
-  
+    <%= link_to 'List', list_path(current_user.lists.first), class: 'btn col s1 offset-s4' %>
+  <% end %>
+  <%= link_to 'Edit', edit_user_registration_path, class: 'btn col s1 offset-s1' %>
+	<%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn col s1 offset-s1' %>
+
 <% else %>
-  <%= link_to 'login', new_user_session_path %>
-  <%= link_to 'sign up', new_user_registration_path%>
+  <%= link_to 'Login', new_user_session_path, class: 'btn col s1 offset-s8' %>
+  <%= link_to 'Sign Up', new_user_registration_path, class: 'btn col s1 offset-s1' %>
 <% end %>
+</div>
 <hr/>
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>

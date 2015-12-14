@@ -1,10 +1,16 @@
-<h1>Items#show</h1>
-<div class = 'items'>
+<div class="center-align">
+  <h1>Item</h1>
+</div>
+<div class="row">
+  <div class="col s10 offset-s1 m4 small card teal lighten-3">
+    <div class = 'items'>
 
-	<p> <%= @item.title %> </p>
-	<p> <%= @item.description  if @item.description%> </p>
-	<p> <%= raw @item.tag_list.map {|i| link_to i, tag_path(i)}.join(" |") %></p>
-	<%= link_to 'Add Item to Your List', new_copy_path(@item.id), method: :post %> 
+    	<p> <%= @item.title %> </p>
+    	<p> <%= @item.description  if @item.description%> </p>
+    	<p> <%= raw @item.tag_list.map {|i| link_to i, tag_path(i)}.join(" |") %></p>
+    	<%= link_to 'Add Item to Your List', new_copy_path(@item.id), method: :post %>
 
-<div>
-<%= link_to 'back to index', root_path%>
+    </div>
+  </div>
+</div>
+<%= link_to 'Home', root_path, class: :btn %>
